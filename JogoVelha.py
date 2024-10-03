@@ -1,3 +1,4 @@
+import random
 class JogoVelha:
   def __init__(self):
     self.tabuleiro = [["1", "2", "3"], ["4", "5", "6"], ["7", "8", "9"]]
@@ -42,33 +43,36 @@ class Jogador(JogoVelha):
     while not self.vencedor:
       if turno % 2 == 1:
          simbolo = "X"
-         jogador = 1
+         jogador = "Você"
       else:
          simbolo = "O"
-         jogador = 2
-
+         jogador = "Maquina"
+         
       jogada_valida = False
       while not jogada_valida:
         try:
-          jogada = int(input(f"Jogador {jogador} digite um número para marcar o jogo da velha: "))
-          if jogada < 1 or jogada > 9:
-             raise ValueError("Número fora do intervalo")
-
+          if jogador=="Você":
+             jogada = int(input("Digite um número para marcar o jogo da velha: "))
+             if jogada < 1 or jogada > 9:
+                raise ValueError("Número fora do intervalo")
+          else:
+             jogada=random.randint(1,9)
           linha = (jogada - 1) // 3
           coluna = (jogada - 1) % 3
 
           if self.tabuleiro[linha][coluna] not in ["X", "O"]:
-             self.tabuleiro[linha][coluna] = simbolo
-             jogada_valida = True
+               self.tabuleiro[linha][coluna] = simbolo
+               jogada_valida = True
+               print(f"{jogador} jogou na posição {jogada}")
           else:
-             print("Posição já ocupada. Tente novamente.")
+               print(f"{jogador} tentou marcar uma posição já ocupada.")
         except ValueError as e:
           print(f"Entrada inválida: {e}. Tente novamente.")
-
+        print("="*30)
         self.exibir_tabuleiro()
 
       if self.verificar_vitoria(simbolo):
-         print(f"Jogador {jogador} venceu!")
+         print(f"{jogador} venceu!")
          self.vencedor = True
       elif self.verificar_empate():
          print("O jogo empatou!")
