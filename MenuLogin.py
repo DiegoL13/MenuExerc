@@ -1,28 +1,41 @@
-nomes=["Alex","Bruno","Caio","Daniel","Evandro"]
+usuarios=["Alex","Bruno","Caio","Daniel","Evandro"]
 senhas=[11,12,13,14,15]
 menu=0
 
-while menu<1 or menu>3:
-   menu=int(input("Digite 1 para realizar login \nDigite 2 para cadastrar\nDigite 3 para sair\n"))
-   
-if menu==1:
-   usuario=input("Digite o nome do usuario:\n")
-   for índice, x in enumerate(nomes):
-      if x==usuario:
-         senha=int(input("Digite a senha:\n"))
-         if senha==senhas[índice]:
-            print(f"Bem-vindo {x}")
-            break
-         elif índice==len(nomes)-1:
-            print("Senha incorreta")
-      elif índice==len(nomes)-1:
-         print(f"Usuario {usuario} não cadastrado")
-   
-elif menu==2:
-   nome=input("Crie o nome do usuario:")
-   nomes.append(nome)
-   senha=int(input("Crie uma senha:"))
-   senhas.append(senha)
+def exibir_menu():
+   while True:
+       menu=int(input("Digite 1 para realizar login \nDigite 2 para cadastrar\nDigite 3 para sair\n"))
+       if menu==1:
+          usuario=input("Digite o nome do usuario:\n")
+          senha=int(input("Digite a senha:\n"))
+          for contagem, x in enumerate(usuarios):
+            if x==usuario and senha==senhas[contagem]:
+               print(f"Bem-vindo {x}")
+               return False
+            elif contagem==len(usuarios)-1:
+               print("Usuario ou senha incorretos")
+               return False
+      
+       elif menu==2: 
+          nome=input("Crie o nome do usuario: ")
+          for x in usuarios:
+            if x==nome:
+              print("Usuario já existe")
+              return False
+          usuarios.append(nome)
+          senha=int(input("Crie uma senha:"))
+          senhas.append(senha)
+          print("Usuario cadastrado com sucesso!")
+          print("="*30)
+          menu=int(input("Digite 1 para voltar ao menu ou 2 para sair: "))
+          if menu==2:
+             print("Saindo...")
+             return False
+          else:
+             print("\nVoltando ao menu\n")
 
-else:
-   print("Saindo...")
+       elif menu==3:
+          print("Saindo...")
+          return False
+   
+exibir_menu()
