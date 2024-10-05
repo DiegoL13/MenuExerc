@@ -1,5 +1,5 @@
-usuarios=["Alex","Bruno","Caio","Daniel","Evandro"]
-senhas=["11","12","13","14","15"]
+usuarios_cadastrados=["Alex","Bruno","Caio","Daniel","Evandro"]
+senhas_cadastradas=["11","12","13","14","15"]
 menu=0
 
 def exibir_menu():
@@ -9,35 +9,35 @@ def exibir_menu():
        if menu==1:
           usuario=input("Digite o nome do usuario:\n")
           senha=input("Digite a senha:\n")
-          for contagem, x in enumerate(usuarios):
-            if x==usuario and senha==senhas[contagem]:
-               print(f"Bem-vindo {x}")
+          for contagem, cadastro in enumerate(usuarios_cadastrados):
+            if usuario==cadastro and senha==senhas_cadastradas[contagem]:
+               print(f"Bem-vindo {usuario}")
                return False
-            elif contagem==len(usuarios)-1:
+            elif contagem==len(usuarios_cadastrados)-1:
                print("Usuario ou senha incorretos")
                return False
       
        elif menu==2: 
           nome=input("Crie o nome do usuario: ")
-          for x in usuarios:
-            while x==nome:
+          for cadastro in usuarios_cadastrados:
+            while cadastro==nome:
               nome=input("Usuario já existe, tente outro nome.\n")
-            
-          usuarios.append(nome)
+          usuarios_cadastrados.append(nome)
           senha=input("Crie uma senha: ")
-          senhas.append(senha)
+          senhas_cadastradas.append(senha)
           print("\nUsuario cadastrado com sucesso!\n")
-          menu=int(input("Digite 1 para voltar ao menu\nDigite 2 para sair\n"))
-          if menu==2:
-             print("\nSaindo...")
-             return False
+          menu=int(input("Digite 1 para voltar ao menu\nDigite qualquer tecla para sair\n"))
+          if menu==1:
+             print("\nVoltando ao menu...\n")
           else:
-             print("\nVoltando ao menu.\n")
-
+             print("\nSaindo...\n")
+             return False
        elif menu==3:
           print("Saindo...")
           return False
      except ValueError as e:
           print("\nValor inválido, digite novamente.\n")
+     else:
+        print("\nSomente valores de 1 a 3 são aceitos\n")
         
 exibir_menu()
