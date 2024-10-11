@@ -25,19 +25,13 @@ def exibir_menu():
           usuarios_cadastrados.append(nome)
           senha=input("Crie uma senha: ")
           senhas_cadastradas.append(senha)
-          print("\nUsuario cadastrado com sucesso!\n")
-          menu=int(input("Digite 1 para voltar ao menu\nDigite qualquer tecla para sair\n"))
-          if menu==1:
-             print("\nVoltando ao menu...\n")
-          else:
-             print("\nSaindo...\n")
-             return False
+          print("\nUsuario cadastrado com sucesso!\nVoltando ao menu...\n")
+          
+          
        elif menu==3:
           print("Saindo...")
           return False
      except ValueError as e:
           print("\nValor inválido, digite novamente.\n")
-     else:
-        print("\nSomente valores de 1 a 3 são aceitos\n")
         
 exibir_menu()
