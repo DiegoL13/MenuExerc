@@ -1,6 +1,5 @@
 usuarios_cadastrados=["Alex","Bruno","Caio","Daniel","Evandro"]
 senhas_cadastradas=["11","12","13","14","15"]
-menu=0
 
 def exibir_menu():
    while True:
